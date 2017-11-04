@@ -102,6 +102,11 @@ class TodosList extends Component<TodosList_props, TodosList_state> {
   handleChange = text => {
     this.updateText(text);
   };
+
+  handleSubmit = (e: Event) => {
+    e.preventDefault();
+    this.onAddTodo();
+  };
   updateText(text) {
     this.setState((prevState, props) => {
       return { text };
@@ -110,7 +115,7 @@ class TodosList extends Component<TodosList_props, TodosList_state> {
   clearTextInput() {
     this.updateText("");
   }
-  onAddTodoClick = (event: Event) => {
+  onAddTodo = () => {
     const { id, addTodo } = this.props;
     const { text } = this.state;
     let data: todoToAdd = {
@@ -130,15 +135,17 @@ class TodosList extends Component<TodosList_props, TodosList_state> {
         <h3> In-Dream : {id}</h3>
         <ul>
           <li>
-            <input
-              placeholder="Plant a seed. ;) "
-              type="text"
-              value={this.state.text}
-              onChange={e => {
-                this.handleChange(e.target.value);
-              }}
-            />
-            <button onClick={this.onAddTodoClick}>Add</button>
+            <form onSubmit={this.handleSubmit}>
+              <input
+                placeholder="Plant a seed. ;) "
+                type="text"
+                value={this.state.text}
+                onChange={e => {
+                  this.handleChange(e.target.value);
+                }}
+              />
+              <button type="submit">Add</button>
+            </form>
           </li>{" "}
           {childIds.map(eachId => {
             return (
