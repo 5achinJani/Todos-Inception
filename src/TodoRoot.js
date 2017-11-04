@@ -196,12 +196,10 @@ class TodoItem extends Component<TodoItem_props, TodoItem_state> {
     const { id, todos } = this.props;
     const item = todos[id];
     const { isSubTodoOpen } = this.state;
-    const levelBtnStatusText = (() => {
-      if (isSubTodoOpen) {
-        return "Out";
-      }
-      return "In";
-    })();
+    const levelBtnStatusText = isSubTodoOpen ? `Out` : `In`;
+    const levelBtnStyle = {
+      color: isSubTodoOpen ? `darkred` : `darkgreen`
+    };
     return (
       <div>
         {" "}
@@ -209,7 +207,9 @@ class TodoItem extends Component<TodoItem_props, TodoItem_state> {
           {" "}
           <b>{id} :</b> {item.text}
         </span>{" "}
-        <button onClick={this.toggleSubTodo}>Level {levelBtnStatusText}</button>
+        <button onClick={this.toggleSubTodo}>
+          Level  <span style={levelBtnStyle}>{levelBtnStatusText}</span>
+        </button>
         {this.subTodosRender()} <br />
       </div>
     );
