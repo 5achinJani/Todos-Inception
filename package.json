@@ -1,15 +1,19 @@
 {
   "name": "todos-inception",
   "version": "0.1.0",
+  "homepage": "https://5achinJani.github.io/todos-inception",
   "devDependencies": {
     "react-scripts": "1.0.14"
   },
   "dependencies": {
     "flow-bin": "^0.57.3",
+    "gh-pages": "^1.0.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
